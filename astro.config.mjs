@@ -11,7 +11,7 @@ import { defineConfig } from 'astro/config';
 
 export default defineConfig({
   site: 'https://jiangchangsheng2022.github.io',
-  base: '/',
+  base: '/book/',
   trailingSlash: 'ignore',
   build: {
     format: 'directory',
