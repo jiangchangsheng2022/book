@@ -1,0 +1,118 @@
+---
+interface Props { lang?: 'zh' | 'en'; }
+const { lang = 'zh' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container-wide">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="footer-title">
+          {lang === 'en' ? 'About this site' : '关于本站'}
+        </p>
+        <p class="footer-text">
+          {lang === 'en'
+            ? 'Companion site for the book "User Research: From Beginner to Proficient" by Jiang Changsheng. Free templates, glossary, tools, and case studies.'
+            : '《用户研究：从入门到精通》（蒋昌盛 著）配套读者服务站。免费提供模板、术语词典、工具地图和真实案例。'}
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-title">
+          {lang === 'en' ? 'Quick links' : '快速跳转'}
+        </p>
+        <ul class="footer-links">
+          {lang === 'en' ? (
+            <>
+              <li><a href={`${base}/en/`}>Home</a></li>
+              <li><a href={`${base}/en/glossary/`}>Glossary</a></li>
+              <li><a href={`${base}/en/about/`}>About</a></li>
+              <li><a href={`${base}/`}>中文版</a></li>
+            </>
+          ) : (
+            <>
+              <li><a href={`${base}/templates/`}>模板包</a></li>
+              <li><a href={`${base}/glossary/`}>术语词典</a></li>
+              <li><a href={`${base}/tools/`}>工具地图</a></li>
+              <li><a href={`${base}/errata/`}>勘误与版本</a></li>
+              <li><a href={`${base}/en/`}>English</a></li>
+            </>
+          )}
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-title">
+          {lang === 'en' ? 'Contact' : '联系作者'}
+        </p>
+        <ul class="footer-links">
+          <li>
+            {lang === 'en' ? 'Errata / feedback' : '勘误与反馈'}：
+            <a href={`${base}/errata/`}>
+              {lang === 'en' ? 'submit form' : '提交表单'}
+            </a>
+          </li>
+          <li>
+            {lang === 'en' ? 'Reader circle' : '读者圈'}：
+            <a href={`${base}/circle/`}>
+              {lang === 'en' ? 'preview' : '建设中'}
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/jiangchangsheng2022" rel="noopener" target="_blank">GitHub</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="text-faint">
+        © {year} 蒋昌盛 / Jiang Changsheng ·
+        {lang === 'en' ? ' Content licensed under CC BY-NC 4.0 · Site source on ' : ' 内容采用 CC BY-NC 4.0 协议 · 站点源码 '}
+        <a href="https://github.com/jiangchangsheng2022/jiangchangsheng2022.github.io" rel="noopener" target="_blank">GitHub</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: var(--space-12);
+    background: var(--color-bg-soft);
+    border-top: 1px solid var(--color-border);
+    padding: var(--space-8) 0 var(--space-5);
+    font-size: var(--text-sm);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+  }
+  @media (max-width: 800px) {
+    .footer-grid { grid-template-columns: 1fr; gap: var(--space-5); }
+  }
+  .footer-title {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--space-3);
+  }
+  .footer-text { color: var(--color-text-soft); line-height: 1.6; }
+  .footer-links {
+    list-style: none;
+    padding: 0; margin: 0;
+  }
+  .footer-links li {
+    margin-bottom: var(--space-2);
+    color: var(--color-text-soft);
+  }
+  .footer-bottom {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-4);
+    font-size: var(--text-xs);
+  }
+  .footer-bottom p { margin: 0; }
+</style>

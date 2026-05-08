@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout
+  title="关于本书"
+  description="《用户研究：从入门到精通》（蒋昌盛 著）的写作背景、读者定位与作者简介。"
+  current="about"
+>
+  <section class="section">
+    <div class="container-narrow">
+      <p class="eyebrow">关于本书</p>
+      <h1>关于这本书和它的作者</h1>
+
+      <h2>这本书写给谁</h2>
+      <p>
+        这本书主要写给四类读者——
+      </p>
+      <ul>
+        <li>正在准备转行做用户研究的同学</li>
+        <li>入行 0–2 年、还没系统跑过项目的研究员</li>
+        <li>从乙方到甲方、或者反过来过渡期的研究员</li>
+        <li>需要在小公司一个人撑起研究职能的人</li>
+      </ul>
+      <p>
+        如果你已经独立做过几十个项目并形成了自己的判断框架，书里很多内容会让你觉得"这都什么基础话"——
+        那就翻 12、13 章看案例就够了。
+      </p>
+
+      <h2>这本书不打算做什么</h2>
+      <p>
+        不打算做"方法大全"——市面上那种 800 页一本、什么方法都讲一点的书已经很多了。
+        我把篇幅集中在六种入门最该吃透的方法、一次完整研究项目怎么落地、以及十几个真实项目背后的判断逻辑上。
+      </p>
+      <p>
+        也不打算做学术教材——书里几乎没有公式推导，统计方法只在能用的地方点到为止。
+      </p>
+
+      <h2>关于作者</h2>
+      <div class="placeholder-banner">
+        作者简介、过往项目背景、联系方式占位中。下一轮你来填，我直接替换这段。
+      </div>
+      <p>
+        蒋昌盛，长期从事用户研究工作。横跨乙方、互联网大厂和中小甲方场景，
+        做过的行业包括手机、消费电子、游戏、出海、电商、AI 等。
+      </p>
+      <p>
+        这本书断断续续写了快两年。中间最难的时候手上四个项目同时在跑，回家凌晨一点、第二天 8 点又开会。
+        书稿是把全书拆成 60 个小节、一周末啃一节这样硬挤出来的。
+        书里有些章节读起来顺、有些会卡——卡的是连着加班三周硬挤出来的。
+        最后一遍统稿没把所有节奏都磨平——磨平了反而像 AI 写的，留了一些不平整的地方。
+      </p>
+
+      <h2>怎么联系我</h2>
+      <ul>
+        <li><a href={`${base}/errata/`}>勘误与反馈表单</a>（推荐）</li>
+        <li>邮箱、公众号二维码占位中</li>
+        <li><a href="https://github.com/jiangchangsheng2022" rel="noopener" target="_blank">GitHub</a></li>
+      </ul>
+
+      <h2>关于这个网站</h2>
+      <p>
+        这个站是纯静态站点，部署在 GitHub Pages 上，不需要服务器、不收任何费用。
+        所有内容（模板、术语、工具评注、合规清单）都对外免费。
+      </p>
+      <p>
+        站点源码在
+        <a href="https://github.com/jiangchangsheng2022/jiangchangsheng2022.github.io" rel="noopener" target="_blank">
+          GitHub
+        </a>
+        上公开。如果你看到任何技术问题或想贡献内容，欢迎提 Issue 或 PR。
+      </p>
+    </div>
+  </section>
+
+  <style>
+    h2 { margin-top: var(--space-8); }
+  </style>
+</BaseLayout>

@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout
+  title="User Research: From Beginner to Proficient"
+  description="Companion site for the book by Jiang Changsheng. Free templates, glossary, tool map, and case studies."
+  lang="en"
+  current="home"
+>
+  <section class="hero">
+    <div class="container-wide">
+      <p class="eyebrow">2026 · Jiang Changsheng</p>
+      <h1>User Research: From Beginner to Proficient</h1>
+      <p class="lead">
+        Companion site for the book. The book itself is currently in Chinese; this English section
+        will grow over time as the bilingual edition rolls out. For now, the glossary, tool map,
+        and an English summary are available below.
+      </p>
+
+      <div class="placeholder-banner">
+        The English edition is being rolled out gradually. Templates and case studies will be
+        translated in future updates. The glossary terms (English ↔ Chinese mapping) are already
+        live.
+      </div>
+
+      <div class="hero-actions">
+        <a href={`${base}/en/glossary/`} class="btn btn-primary">Open glossary</a>
+        <a href={`${base}/`} class="btn btn-secondary">中文完整版</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-narrow">
+      <h2>About the book</h2>
+      <p>
+        A practical guide to user research, written for transitioners and early-career researchers.
+        It covers six foundational methods every junior should master, the full lifecycle of a
+        single research project, and twelve case studies pulled from real industry projects across
+        consumer electronics, gaming, AI, and cross-border products.
+      </p>
+
+      <h2>What you'll find here</h2>
+      <ul>
+        <li><strong>Templates</strong> — 8 free templates covering proposal, screener, consent, interview guide, surveys, persona canvas, journey map, and report deck</li>
+        <li><strong>Glossary</strong> — 80+ industry terms in English and Chinese, searchable and filterable</li>
+        <li><strong>Tool map</strong> — Categorised by use case, with one-line takes on each tool</li>
+        <li><strong>Compliance checklist</strong> — Printable checklist for consent, data handling, and incentive practices</li>
+        <li><strong>Case studies</strong> — Extended versions of the cases in chapters 12–13</li>
+      </ul>
+
+      <h2>Contact</h2>
+      <p>
+        For corrections, feedback, or case submissions, please use the
+        <a href={`${base}/errata/`}>feedback form</a> (currently in Chinese; an English version is
+        planned). Source for this site is on
+        <a href="https://github.com/jiangchangsheng2022/jiangchangsheng2022.github.io" rel="noopener" target="_blank">
+          GitHub
+        </a>.
+      </p>
+    </div>
+  </section>
+
+  <style>
+    .hero {
+      padding: var(--space-10) 0 var(--space-8);
+      background: linear-gradient(180deg, var(--color-bg-soft) 0%, var(--color-bg) 100%);
+    }
+    .hero-actions {
+      display: flex;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+      margin-top: var(--space-5);
+    }
+    h2 { margin-top: var(--space-6); }
+  </style>
+</BaseLayout>

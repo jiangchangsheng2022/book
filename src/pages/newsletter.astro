@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout
+  title="刊物"
+  description="《用户研究：从入门到精通》读者刊物——行业小观察、新工具试用记、读者问答合集。"
+  current="newsletter"
+>
+  <section class="section">
+    <div class="container-narrow">
+      <p class="eyebrow">不定期刊物</p>
+      <h1>刊物</h1>
+      <p class="lead">
+        书是一锤子定稿的；行业不是。我打算用这个刊物记几样书里没篇幅展开、又值得说的事——
+        新工具的实测、读者问答的合集、行业里临时冒出来的小观察。
+      </p>
+
+      <div class="placeholder-banner">
+        当前还没有正式期号。下一轮我会发出第一期，订阅入口和 RSS 也会同步上线。
+      </div>
+
+      <div class="planned">
+        <h2>计划写的几样</h2>
+        <ul>
+          <li>
+            <strong>新工具试用记</strong>：当前火的 AI 转写、AI 主持工具实测，比官方介绍诚实
+          </li>
+          <li>
+            <strong>读者问答合集</strong>：从勘误表单和邮件里挑出反复出现的问题，统一回一次
+          </li>
+          <li>
+            <strong>行业小观察</strong>：业内跳槽、薪资行情、招聘画像变化的非正式记录
+          </li>
+          <li>
+            <strong>方法补遗</strong>：书里没写或写薄了的方法补充
+          </li>
+        </ul>
+      </div>
+
+      <div class="subscribe">
+        <h2>订阅</h2>
+        <p class="text-soft">两种方式：</p>
+        <ul>
+          <li>
+            <strong>RSS</strong>：阅读器里订阅
+            <code>{`https://jiangchangsheng2022.github.io/rss.xml`}</code>
+            （文件下一轮上线）
+          </li>
+          <li>
+            <strong>邮件提醒</strong>：留邮箱，发布新内容时通知你
+            <a href={`${base}/circle/`}>（前往读者圈预约页）</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .planned, .subscribe {
+      margin-top: var(--space-8);
+    }
+    .planned ul, .subscribe ul {
+      margin-top: var(--space-3);
+    }
+    .planned strong, .subscribe strong {
+      color: var(--color-text);
+    }
+  </style>
+</BaseLayout>

@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// 占位案例：下一轮替换为书里 12/13 章的延伸短版 + 读者投稿
+const placeholderCases = [
+  {
+    title: '一次留存下降研究是怎么完整跑完的（书 · 第 8 章延伸）',
+    industry: '互联网产品',
+    readMins: 8,
+    summary: '业务方最开始只说"留存下降了"，到最终结论进入产品排期、四周后看到效果——这一份记录展开了书里第 8 章的细节。',
+  },
+  {
+    title: '智能手机 NPS 长期追踪，不能只看一次调研（书 · 第 12.8 节延伸）',
+    industry: '消费电子',
+    readMins: 12,
+    summary: '追踪研究的四个一致性、IBN 驱动力模型 + 光环效应、RWA 加驱动力乘差距矩阵——书里这一节的项目细节版。',
+  },
+  {
+    title: '一个失败项目教会我的事（书 · 第 13.10 节延伸）',
+    industry: '通用',
+    readMins: 6,
+    summary: '把当时怎么失误、怎么补救、事后又怎么复盘的细节写出来，比成功案例更值得抄。',
+  },
+];
+---
+
+<BaseLayout
+  title="真实案例"
+  description="作者亲历的用户研究项目复盘，覆盖互联网、消费电子、游戏、出海等行业。"
+  current="cases"
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">真实案例集</p>
+      <h1>真实案例</h1>
+      <p class="lead">
+        书里 12 / 13 章每个案例的篇幅都有限。这里把其中几个我自己反复回想的项目，
+        展开成更细的复盘版——包含决策当时的犹豫、走过的弯路、和事后才想明白的那些事。
+      </p>
+
+      <div class="placeholder-banner">
+        当前页面为占位结构。下一轮我会把 2-3 篇精选案例填进来，并加上读者投稿入口。
+      </div>
+
+      <div class="grid grid-2 mt-6">
+        {placeholderCases.map((c) => (
+          <article class="card case-card">
+            <div class="case-meta">
+              <span class="tag">{c.industry}</span>
+              <span class="text-faint">约 {c.readMins} 分钟阅读</span>
+            </div>
+            <h3 class="mb-0">{c.title}</h3>
+            <p class="text-soft case-summary">{c.summary}</p>
+            <p class="text-faint">即将上线</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="submit-cta">
+        <h2>你也有一个值得分享的项目吗</h2>
+        <p class="text-soft">
+          我打算在书的下一版收录读者真实案例。如果你做过的项目里有一个判断让你印象深刻——
+          不一定是成功的，失败但教训清楚的更值得分享。
+        </p>
+        <p>
+          <a href={`${base}/errata/`} class="btn btn-primary">提交你的案例</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .case-card {
+      display: flex;
+      flex-direction: column;
+    }
+    .case-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-sm);
+      margin-bottom: var(--space-3);
+    }
+    .case-summary {
+      flex-grow: 1;
+      margin-bottom: var(--space-3);
+    }
+    .submit-cta {
+      margin-top: var(--space-10);
+      padding: var(--space-6);
+      background: var(--color-bg-soft);
+      border-radius: var(--radius-lg);
+      text-align: center;
+    }
+    .submit-cta h2 { margin-bottom: var(--space-3); }
+  </style>
+</BaseLayout>

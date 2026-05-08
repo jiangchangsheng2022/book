@@ -1,0 +1,249 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const consentChecklist = [
+  { id: 'c1', text: '研究目的已用通俗语言写清楚（不写成业内黑话）' },
+  { id: 'c2', text: '研究过程已写明（多长时间、要做什么、是否录音录像）' },
+  { id: 'c3', text: '说明会收集哪些数据（录音、录像、屏幕操作、问卷答案）' },
+  { id: 'c4', text: '说明数据会被用在哪里（仅内部产品改进、报告中匿名）' },
+  { id: 'c5', text: '说明数据存储与保密（谁保管、保存多久、如何保护）' },
+  { id: 'c6', text: '说明潜在风险与收益（包括激励金额）' },
+  { id: 'c7', text: '强调自愿参与、可随时无理由退出且无任何损失' },
+  { id: 'c8', text: '留下可联系的研究负责人姓名/邮箱' },
+  { id: 'c9', text: '获得明确签署记录（电子勾选或纸质签字）' },
+];
+
+const dataChecklist = [
+  { id: 'd1', text: '只收集与研究目标直接相关的最必要数据（最小化）' },
+  { id: 'd2', text: '数据用途严格限制在告知过的范围内（目的限制）' },
+  { id: 'd3', text: '涉及欧盟用户时已遵守 GDPR' },
+  { id: 'd4', text: '涉及加州用户时已遵守 CCPA' },
+  { id: 'd5', text: '中国境内研究已对照《个人信息保护法》核查' },
+  { id: 'd6', text: '所有 PII（姓名、电话、邮箱、身份证号、精确地址）已从对外材料中移除' },
+  { id: 'd7', text: '引述用户原话时，公司/品牌名已替换' },
+  { id: 'd8', text: '视频/图片中的人脸和敏感信息已模糊或打码' },
+  { id: 'd9', text: '内部数据使用代号（User01、User02），密钥单独保管' },
+];
+
+const specialChecklist = [
+  { id: 's1', text: '涉及未成年人时已获得监护人知情同意' },
+  { id: 's2', text: '与未成年人沟通时使用更简单友好的语言' },
+  { id: 's3', text: '研究过程中关注未成年人的情绪状态' },
+  { id: 's4', text: '涉及残障/病人等特殊人群时已充分考虑其特殊情况和需求' },
+];
+
+const incentiveChecklist = [
+  { id: 'i1', text: '激励是对时间和精力的感谢，不是购买好评' },
+  { id: 'i2', text: '激励金额与时间投入和任务复杂度匹配（不过高不过低）' },
+  { id: 'i3', text: '研究开始前已明确告知激励形式、金额和发放时间' },
+  { id: 'i4', text: '在承诺时间内兑现激励，不拖欠' },
+];
+---
+
+<BaseLayout
+  title="合规清单"
+  description="用户研究合规清单：知情同意书要素、数据采集与处理、特殊人群、激励发放规范。基于附录 C 改造为可勾选可打印的检查清单。"
+  current="compliance"
+>
+  <section class="section">
+    <div class="container-narrow">
+      <p class="eyebrow">附录 C · 数据隐私与研究合规</p>
+      <h1>研究合规清单</h1>
+      <p class="lead">
+        作为研究员，我们手中掌握着大量真实、敏感的用户数据。这是宝贵的财富，更是沉甸甸的责任。
+        把书里的合规要点拆成四份可勾选的清单——每次开新项目过一遍，比记原则更靠谱。
+      </p>
+
+      <div class="actions-bar no-print">
+        <button class="btn btn-secondary" id="reset-btn">重置勾选</button>
+        <button class="btn btn-secondary" id="print-btn">打印这一页</button>
+        <a href={`${base}/templates/informed-consent/`} class="btn btn-primary">
+          下载知情同意书模板
+        </a>
+      </div>
+
+      <div class="callout">
+        <p>
+          <strong>核心原则：尊重与透明。</strong>
+          所有合规法规的主要精神都可以归结为这两点——尊重用户的权利，对研究目的和数据用途保持完全透明。
+        </p>
+      </div>
+
+      <h2>1. 知情同意书要素清单</h2>
+      <p class="text-soft">在执行任何研究前，确认这份同意书已经包含以下九项要素：</p>
+      <ul class="check-list">
+        {consentChecklist.map((item) => (
+          <li>
+            <label>
+              <input type="checkbox" data-id={item.id} />
+              <span>{item.text}</span>
+            </label>
+          </li>
+        ))}
+      </ul>
+
+      <h2>2. 数据采集与处理清单</h2>
+      <p class="text-soft">采集和处理任何用户数据时，逐条确认：</p>
+      <ul class="check-list">
+        {dataChecklist.map((item) => (
+          <li>
+            <label>
+              <input type="checkbox" data-id={item.id} />
+              <span>{item.text}</span>
+            </label>
+          </li>
+        ))}
+      </ul>
+
+      <h2>3. 特殊人群清单</h2>
+      <p class="text-soft">研究涉及未成年人或残障/病人等特殊人群时：</p>
+      <ul class="check-list">
+        {specialChecklist.map((item) => (
+          <li>
+            <label>
+              <input type="checkbox" data-id={item.id} />
+              <span>{item.text}</span>
+            </label>
+          </li>
+        ))}
+      </ul>
+
+      <h2>4. 激励发放清单</h2>
+      <p class="text-soft">向用户发放感谢报酬时：</p>
+      <ul class="check-list">
+        {incentiveChecklist.map((item) => (
+          <li>
+            <label>
+              <input type="checkbox" data-id={item.id} />
+              <span>{item.text}</span>
+            </label>
+          </li>
+        ))}
+      </ul>
+
+      <hr />
+
+      <div class="ending">
+        <p class="text-soft">
+          请永远怀着一颗敬畏之心对待用户的信任。他们向我们敞开心扉，分享观点，暴露困惑——
+          这是我们工作的基石。保护好他们的隐私，不仅是法律的要求，更是研究者最基本的职业道德和人性关怀。
+        </p>
+      </div>
+
+      <p class="text-faint mt-6 no-print">
+        本页支持浏览器打印（按 Ctrl/Cmd + P）。勾选状态会保存在浏览器本地，下次打开还在。
+      </p>
+    </div>
+  </section>
+
+  <style>
+    .actions-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin: var(--space-5) 0;
+    }
+
+    .callout {
+      background: var(--color-accent-soft);
+      border-left: 3px solid var(--color-accent);
+      padding: var(--space-3) var(--space-4);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin: var(--space-5) 0;
+    }
+    .callout p { margin: 0; color: var(--color-text); }
+
+    h2 {
+      margin-top: var(--space-8);
+      padding-bottom: var(--space-2);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .check-list {
+      list-style: none;
+      padding: 0;
+      margin: var(--space-3) 0;
+    }
+    .check-list li {
+      margin-bottom: var(--space-2);
+      padding: var(--space-2) 0;
+    }
+    .check-list label {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      cursor: pointer;
+      line-height: 1.6;
+    }
+    .check-list input[type="checkbox"] {
+      margin-top: 0.3em;
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      accent-color: var(--color-accent);
+    }
+    .check-list input:checked + span {
+      text-decoration: line-through;
+      color: var(--color-text-faint);
+    }
+
+    .ending {
+      background: var(--color-bg-soft);
+      padding: var(--space-5);
+      border-radius: var(--radius);
+      margin-top: var(--space-6);
+    }
+    .ending p { margin: 0; font-style: italic; }
+
+    @media print {
+      .actions-bar, .callout, .ending { display: block !important; }
+      .check-list input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        border: 1.5px solid #000;
+        background: transparent;
+        border-radius: 2px;
+      }
+      h1 { font-size: 18pt; }
+      h2 { font-size: 14pt; }
+    }
+  </style>
+
+  <script is:inline>
+    (function () {
+      const STORAGE_KEY = 'urcompliance-checks-v1';
+      const checkboxes = document.querySelectorAll('.check-list input[type="checkbox"]');
+
+      // Restore
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        checkboxes.forEach((cb) => {
+          if (saved[cb.dataset.id]) cb.checked = true;
+        });
+      } catch (e) { /* ignore */ }
+
+      // Save on change
+      checkboxes.forEach((cb) => {
+        cb.addEventListener('change', () => {
+          try {
+            const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+            saved[cb.dataset.id] = cb.checked;
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+          } catch (e) { /* ignore */ }
+        });
+      });
+
+      // Reset
+      const resetBtn = document.getElementById('reset-btn');
+      resetBtn?.addEventListener('click', () => {
+        if (!confirm('确认清空当前页所有勾选？')) return;
+        checkboxes.forEach((cb) => (cb.checked = false));
+        try { localStorage.removeItem(STORAGE_KEY); } catch (e) { /* ignore */ }
+      });
+
+      // Print
+      document.getElementById('print-btn')?.addEventListener('click', () => window.print());
+    })();
+  </script>
+</BaseLayout>

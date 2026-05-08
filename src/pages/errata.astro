@@ -1,0 +1,174 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// 占位版本记录。下一轮替换为真实数据。
+const versions = [
+  {
+    version: 'v1.98.5',
+    date: '2026-04',
+    type: '当前版本',
+    notes: '最新印刷版本。读者服务网站基于此版本搭建。',
+  },
+  {
+    version: 'v1.98.4',
+    date: '2026-03',
+    type: '排版校订',
+    notes: '插图建议表第三轮、参考文献全量补齐、引号统一。',
+  },
+  {
+    version: 'v1.97.x',
+    date: '2026-01',
+    type: '内容定稿',
+    notes: '全书 17 章 + 4 个附录定稿；后记完成。',
+  },
+];
+
+const errata = [
+  // 留空：等读者反馈累积后填入
+];
+---
+
+<BaseLayout
+  title="勘误与版本"
+  description="《用户研究：从入门到精通》版本记录与勘误表，读者反馈持续更新。"
+  current="errata"
+>
+  <section class="section">
+    <div class="container-narrow">
+      <p class="eyebrow">勘误 · 版本</p>
+      <h1>勘误与版本</h1>
+      <p class="lead">
+        书印出来就改不动了，但内容可以在这里持续修订。这一页记录两件事——
+        每个版本改了什么，以及读者发现的笔误和需要修正的地方。
+      </p>
+
+      <h2>版本记录</h2>
+      <div class="placeholder-banner">
+        当前为占位版本号。下一轮会同步成真实印刷版的更新历史。
+      </div>
+      <ul class="version-list">
+        {versions.map((v) => (
+          <li class="version-item">
+            <div class="version-head">
+              <span class="version-num">{v.version}</span>
+              <span class="text-faint">{v.date}</span>
+              <span class="tag">{v.type}</span>
+            </div>
+            <p class="text-soft">{v.notes}</p>
+          </li>
+        ))}
+      </ul>
+
+      <h2>已确认的勘误</h2>
+      {errata.length === 0 ? (
+        <p class="text-soft">
+          目前还没有累积已确认的勘误。如果你在书里发现笔误、事实错误或者论述不清的地方，
+          请用下面的表单告诉我，下一版我把它改进。
+        </p>
+      ) : (
+        <ul class="errata-list">
+          {/* 渲染勘误条目 */}
+        </ul>
+      )}
+
+      <h2>提交勘误 / 反馈</h2>
+      <div class="form-placeholder">
+        <p class="text-soft">
+          下一轮这里会接入一个 Formspree 表单，提交后直接进我邮箱。先用占位结构展示字段：
+        </p>
+        <div class="form-mock">
+          <div class="form-field">
+            <label>页码 / 章节</label>
+            <input type="text" placeholder="例如：第 6 章 6.4 节，第 87 页" disabled />
+          </div>
+          <div class="form-field">
+            <label>反馈类型</label>
+            <select disabled>
+              <option>笔误 / 错别字</option>
+              <option>事实错误</option>
+              <option>论述不清</option>
+              <option>建议补充</option>
+              <option>读者案例投稿</option>
+              <option>其它</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label>具体内容</label>
+            <textarea rows="5" placeholder="原文是……，建议改为……" disabled></textarea>
+          </div>
+          <div class="form-field">
+            <label>你的邮箱（可选，用于回复）</label>
+            <input type="email" placeholder="name@example.com" disabled />
+          </div>
+          <button class="btn btn-primary" disabled>提交（表单待接入）</button>
+        </div>
+        <p class="text-faint mt-6">
+          表单接入后这一段占位会自动消失。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    h2 { margin-top: var(--space-8); }
+
+    .version-list {
+      list-style: none;
+      padding: 0;
+      margin: var(--space-4) 0;
+    }
+    .version-item {
+      padding: var(--space-4);
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      margin-bottom: var(--space-3);
+    }
+    .version-head {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-2);
+      flex-wrap: wrap;
+    }
+    .version-num {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--color-accent);
+    }
+
+    .form-placeholder {
+      background: var(--color-bg-soft);
+      border-radius: var(--radius);
+      padding: var(--space-5);
+      margin-top: var(--space-4);
+    }
+    .form-mock {
+      margin-top: var(--space-4);
+    }
+    .form-field {
+      margin-bottom: var(--space-3);
+    }
+    .form-field label {
+      display: block;
+      font-size: var(--text-sm);
+      font-weight: 500;
+      margin-bottom: var(--space-2);
+      color: var(--color-text-soft);
+    }
+    .form-field input, .form-field select, .form-field textarea {
+      width: 100%;
+      padding: 0.5em 0.8em;
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: var(--text-sm);
+      color: var(--color-text);
+    }
+    .form-field input:disabled, .form-field select:disabled, .form-field textarea:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+  </style>
+</BaseLayout>

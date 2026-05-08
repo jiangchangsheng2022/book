@@ -1,0 +1,204 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import glossary from '../data/glossary.json';
+
+const categories = Object.values(glossary.categories);
+const terms = glossary.terms;
+---
+
+<BaseLayout
+  title="术语词典"
+  description="用户研究行业 80+ 高频术语，按 11 个分类整理，可搜索可筛选。从 Insight、Persona 到 NPS、JTBD、HEART 一查就到。"
+  current="glossary"
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">附录 A · 用户研究常用术语</p>
+      <h1>术语词典</h1>
+      <p class="lead">
+        这一行有自己的黑话。{terms.length} 条术语按 {categories.length} 个分类整理，
+        听不懂时回来翻一下就行。
+      </p>
+
+      <div class="glossary-controls">
+        <input
+          type="search"
+          id="glossary-search"
+          placeholder="搜索术语、缩写或释义关键词……"
+          aria-label="搜索术语"
+        />
+        <div class="category-filters" id="category-filters">
+          <button class="filter-btn is-active" data-category="all">全部</button>
+          {categories.map((c) => (
+            <button class="filter-btn" data-category={c}>{c}</button>
+          ))}
+        </div>
+      </div>
+
+      <p class="result-count text-faint" id="result-count">
+        显示 {terms.length} / {terms.length} 条
+      </p>
+
+      <ul class="term-list" id="term-list">
+        {terms.map((t) => (
+          <li
+            class="term-item"
+            data-category={t.category}
+            data-search={`${t.en} ${t.zh} ${t.def}`.toLowerCase()}
+          >
+            <div class="term-head">
+              {t.en && <span class="term-en">{t.en}</span>}
+              {t.zh && <span class="term-zh">{t.zh}</span>}
+              <span class="tag term-cat">{t.category}</span>
+            </div>
+            <p class="term-def">{t.def}</p>
+          </li>
+        ))}
+      </ul>
+
+      <div class="empty-state" id="empty-state" hidden>
+        <p>没找到匹配的术语。换个关键词，或者去 <a href="/errata/">提交补充</a>，下一版我把它加进去。</p>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .glossary-controls {
+      margin: var(--space-5) 0 var(--space-3);
+    }
+    #glossary-search {
+      width: 100%;
+      padding: 0.7em 1em;
+      font-size: var(--text-base);
+      border: 1px solid var(--color-border-strong);
+      background: var(--color-bg-elevated);
+      color: var(--color-text);
+      border-radius: var(--radius);
+      font-family: inherit;
+    }
+    #glossary-search:focus {
+      outline: none;
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px var(--color-accent-soft);
+    }
+
+    .category-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-top: var(--space-3);
+    }
+    .filter-btn {
+      padding: 0.35em 0.9em;
+      font-size: var(--text-sm);
+      background: transparent;
+      color: var(--color-text-soft);
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .filter-btn:hover {
+      background: var(--color-bg-soft);
+    }
+    .filter-btn.is-active {
+      background: var(--color-accent);
+      color: #fff;
+      border-color: var(--color-accent);
+    }
+
+    .result-count {
+      font-size: var(--text-sm);
+      margin: var(--space-3) 0;
+    }
+
+    .term-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .term-item {
+      padding: var(--space-4) 0;
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: 0;
+    }
+    .term-item[hidden] { display: none; }
+
+    .term-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: var(--space-3);
+      margin-bottom: var(--space-2);
+    }
+    .term-en {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: var(--text-lg);
+      color: var(--color-text);
+    }
+    .term-zh {
+      font-family: var(--font-serif);
+      font-size: var(--text-lg);
+      color: var(--color-accent);
+    }
+    .term-cat {
+      margin-left: auto;
+      font-size: var(--text-xs);
+    }
+    .term-def {
+      margin: 0;
+      color: var(--color-text-soft);
+      line-height: 1.7;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: var(--space-8) 0;
+      color: var(--color-text-faint);
+    }
+  </style>
+
+  <script is:inline>
+    (function () {
+      const search = document.getElementById('glossary-search');
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const items = document.querySelectorAll('.term-item');
+      const countEl = document.getElementById('result-count');
+      const emptyEl = document.getElementById('empty-state');
+      let activeCategory = 'all';
+      let activeQuery = '';
+      const total = items.length;
+
+      function applyFilters() {
+        let shown = 0;
+        items.forEach((item) => {
+          const cat = item.dataset.category;
+          const haystack = item.dataset.search || '';
+          const matchCat = activeCategory === 'all' || cat === activeCategory;
+          const matchQuery = !activeQuery || haystack.includes(activeQuery);
+          const visible = matchCat && matchQuery;
+          item.hidden = !visible;
+          if (visible) shown++;
+        });
+        countEl.textContent = `显示 ${shown} / ${total} 条`;
+        emptyEl.hidden = shown !== 0;
+      }
+
+      search.addEventListener('input', (e) => {
+        activeQuery = e.target.value.trim().toLowerCase();
+        applyFilters();
+      });
+
+      filterBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach((b) => b.classList.remove('is-active'));
+          btn.classList.add('is-active');
+          activeCategory = btn.dataset.category;
+          applyFilters();
+        });
+      });
+    })();
+  </script>
+</BaseLayout>

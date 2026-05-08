@@ -1,0 +1,101 @@
+{
+  "intro": "工具名称会过时，但工具类别和使用场景不会过时。这一页是按场景组织的——你先想清楚要解决什么问题，再回过头看哪个工具趁手。每个产品名都只是这一类工具在 2026 年的代表，几年后会被新产品替换，但类别本身不会变。",
+  "principle": "工具类别是地图，产品名只是地标。先把 Excel 用透——用不熟 Excel 的研究员，换什么工具都不会变厉害。",
+  "categories": [
+    {
+      "key": "survey",
+      "title": "问卷工具",
+      "scenario": "需要做定量问卷、收集 100 份以上结构化数据时",
+      "selection": "看三件事：能不能做配额、能不能做随机/逻辑跳转、能不能导出干净的明细数据。入门优先选『免费 + 有逻辑跳转 + 能看后台 raw data』的产品。",
+      "tools": [
+        { "name": "问卷星", "region": "国内", "note": "国内最普及，免费版够新人用" },
+        { "name": "腾讯问卷", "region": "国内", "note": "微信生态打通，分发方便" },
+        { "name": "金数据", "region": "国内", "note": "界面清爽，逻辑跳转友好" },
+        { "name": "SurveyMonkey", "region": "海外", "note": "经典老牌，模板多" },
+        { "name": "Google Forms", "region": "海外", "note": "轻量免费，简单调研够用" },
+        { "name": "Qualtrics", "region": "海外", "note": "企业级，配额管理强" },
+        { "name": "Typeform", "region": "海外", "note": "体验好，适合面向消费者的问卷" }
+      ]
+    },
+    {
+      "key": "interview",
+      "title": "访谈与录音转写",
+      "scenario": "做深度访谈、焦点小组、可用性测试时",
+      "selection": "录音的标配是两台设备同时录——主机+备机。转写工具用前一定先用 30 秒样本测一下方言/专业术语识别率，否则后期清洗成本极高。",
+      "tools": [
+        { "name": "飞书妙记", "region": "国内", "note": "团队协作场景方便" },
+        { "name": "讯飞听见", "region": "国内", "note": "中文识别老牌" },
+        { "name": "网易见外", "region": "国内", "note": "免费额度高" },
+        { "name": "通义听悟", "region": "国内", "note": "支持自动摘要" },
+        { "name": "Otter", "region": "海外", "note": "英文转写主力" },
+        { "name": "Trint", "region": "海外", "note": "多语种支持好" },
+        { "name": "Descript", "region": "海外", "note": "转写 + 音视频编辑一体" }
+      ]
+    },
+    {
+      "key": "analysis",
+      "title": "数据分析工具",
+      "scenario": "把回收的问卷或日志数据跑出可呈现的发现",
+      "selection": "轻量优先 Excel + 数据透视表，绝大多数项目够用。复杂统计才上 SPSS/Jamovi/R/Python。可视化优先 Excel/PPT 原生图，能看就行。",
+      "tools": [
+        { "name": "Excel + 数据透视表", "region": "通用", "note": "永不过时，先把它用透" },
+        { "name": "SPSS", "region": "通用", "note": "点选式，新人友好" },
+        { "name": "Jamovi", "region": "通用", "note": "免费，可替代 SPSS" },
+        { "name": "R / Python", "region": "通用", "note": "自由度最高，学习曲线陡" },
+        { "name": "Tableau Public", "region": "通用", "note": "免费版可发布到云端" },
+        { "name": "Power BI", "region": "通用", "note": "微软生态，企业内集成好" },
+        { "name": "ECharts / Plotly", "region": "通用", "note": "适合工程师做交互图" }
+      ]
+    },
+    {
+      "key": "usability",
+      "title": "可用性测试与原型",
+      "scenario": "上线前做原型测试、远程可用性测试、热力分析",
+      "selection": "远程测试国内常用屏幕共享 + 录屏即可。原型 Figma 已是行业默认。热力图 Microsoft Clarity 免费且上手快。",
+      "tools": [
+        { "name": "UserTesting", "region": "海外", "note": "远程可用性测试老牌" },
+        { "name": "Lookback", "region": "海外", "note": "用研友好的远程会话工具" },
+        { "name": "Maze", "region": "海外", "note": "无主持人原型测试" },
+        { "name": "腾讯会议 / 飞书 / 钉钉", "region": "国内", "note": "屏幕共享 + 录屏，国内远程测试主力" },
+        { "name": "Figma", "region": "通用", "note": "原型行业默认" },
+        { "name": "Axure", "region": "通用", "note": "高保真交互原型" },
+        { "name": "墨刀", "region": "国内", "note": "中文友好，上手快" },
+        { "name": "Hotjar", "region": "海外", "note": "热力图 + 会话回放" },
+        { "name": "Microsoft Clarity", "region": "海外", "note": "免费、上手快、不限流量" }
+      ]
+    },
+    {
+      "key": "data-source",
+      "title": "公开数据源",
+      "scenario": "桌面研究、市场容量估算、用户特征基线对齐",
+      "selection": "宏观数据用国家统计局、世界银行；行业数据用艾瑞/易观/QuestMobile 的免费摘要；海外趋势用 Google Trends + Pew Research。",
+      "tools": [
+        { "name": "国家统计局", "region": "国内", "note": "stats.gov.cn，宏观人口/经济权威" },
+        { "name": "CNNIC 中国互联网发展状况报告", "region": "国内", "note": "互联网行业必读基线" },
+        { "name": "艾瑞 / 易观 / QuestMobile", "region": "国内", "note": "互联网行业研究，部分摘要免费" },
+        { "name": "阿里指数 / 京东智联云", "region": "国内", "note": "电商品类数据" },
+        { "name": "Statista", "region": "海外", "note": "全球数据库，免费摘要可看" },
+        { "name": "Google Trends", "region": "海外", "note": "搜索趋势，看品类热度" },
+        { "name": "Pew Research", "region": "海外", "note": "美国人口与社会议题" },
+        { "name": "We Are Social 年度报告", "region": "海外", "note": "全球数字行为基线" }
+      ]
+    },
+    {
+      "key": "report",
+      "title": "行业报告来源",
+      "scenario": "找别人嚼过的二手研究、行业趋势观察、竞品对标",
+      "selection": "免费高质量来源：腾讯研究院、阿里研究院、字节巨量算数；咨询公司：麦肯锡 / BCG / Bain / Deloitte；学术：JMR、JCR、POQ。能找到 raw data 就别只看结论，能找到方法附录就先翻方法附录。",
+      "tools": [
+        { "name": "腾讯研究院", "region": "国内", "note": "互联网产业观察" },
+        { "name": "阿里研究院", "region": "国内", "note": "电商消费趋势" },
+        { "name": "字节跳动巨量算数", "region": "国内", "note": "短视频生态数据" },
+        { "name": "麦肯锡 / BCG / Bain", "region": "海外", "note": "战略类报告" },
+        { "name": "Deloitte / PwC", "region": "海外", "note": "行业垂类年度报告" },
+        { "name": "Forrester / Gartner / IDC", "region": "海外", "note": "技术与市场分析（部分付费）" },
+        { "name": "Journal of Marketing Research", "region": "学术", "note": "营销定量研究主流期刊" },
+        { "name": "Journal of Consumer Research", "region": "学术", "note": "消费者行为研究" },
+        { "name": "Public Opinion Quarterly", "region": "学术", "note": "民意与抽样方法" }
+      ]
+    }
+  ]
+}

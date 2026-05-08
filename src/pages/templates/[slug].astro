@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import templates from '../../data/templates.json';
+
+export function getStaticPaths() {
+  return templates.map((t) => ({
+    params: { slug: t.slug },
+    props: { template: t },
+  }));
+}
+
+const { template } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout
+  title={template.title}
+  description={template.summary}
+  current="templates"
+>
+  <article class="section">
+    <div class="container-narrow">
+      <p class="eyebrow">
+        <a href={`${base}/templates/`}>← 模板包</a>
+      </p>
+      <h1>{template.title}</h1>
+
+      <div class="meta-row">
+        <span class="tag">{template.category}</span>
+        <span class="tag">{template.stage}</span>
+        <span class="tag">{template.format}</span>
+        {template.placeholder && <span class="tag tag-warning">占位中</span>}
+      </div>
+
+      <p class="lead">{template.summary}</p>
+
+      <h2>这份模板适合什么场景</h2>
+      <p>{template.useCase}</p>
+
+      <h2>这份模板的特点</h2>
+      <ul>
+        {template.highlights.map((h) => <li>{h}</li>)}
+      </ul>
+
+      <h2>下载</h2>
+      {template.placeholder ? (
+        <div class="placeholder-banner">
+          这份模板的实际 {template.format} 文件还在准备中。下一轮我会把文件挂在这里，
+          页面布局保持不变，你直接来这一页就能下载。
+        </div>
+      ) : (
+        <p>
+          <a class="btn btn-primary" href={`${base}/templates/files/${template.slug}${template.format}`}>
+            下载 {template.format}
+          </a>
+        </p>
+      )}
+
+      <hr />
+
+      <p class="text-soft">
+        想要的模板没找到，或者觉得这份还可以再补什么？
+        <a href={`${base}/errata/`}>提交反馈</a>，下一版我把它改进。
+      </p>
+    </div>
+  </article>
+
+  <style>
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin: var(--space-3) 0 var(--space-5);
+    }
+    h2 {
+      margin-top: var(--space-6);
+    }
+  </style>
+</BaseLayout>

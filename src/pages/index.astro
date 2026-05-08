@@ -1,0 +1,240 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const resources = [
+  {
+    title: '模板包',
+    desc: '研究计划书、甄别问卷、知情同意书、访谈提纲、问卷模板、用户画像、用户旅程图、研究报告 PPT，共 8 份，覆盖一次研究项目从立项到交付的所有节点。',
+    href: `${base}/templates/`,
+    cta: '查看模板',
+    count: '8 份模板',
+  },
+  {
+    title: '术语词典',
+    desc: '从 Insight、Persona 到 NPS、JTBD、HEART，80 多条用户研究高频术语，按 11 个分类整理，可搜索可筛选。',
+    href: `${base}/glossary/`,
+    cta: '打开词典',
+    count: '80+ 术语',
+  },
+  {
+    title: '工具地图',
+    desc: '问卷、转录、数据分析、可用性测试、公开数据源、行业报告——按使用场景导航的工具地图，每个工具一句话说人话评注。',
+    href: `${base}/tools/`,
+    cta: '查看工具',
+    count: '6 大类',
+  },
+  {
+    title: '合规清单',
+    desc: '知情同意书要素、数据最小化原则、未成年人特殊处理、激励发放规范——把附录 C 改造成可勾选可打印的检查清单。',
+    href: `${base}/compliance/`,
+    cta: '走一遍清单',
+    count: '可打印',
+  },
+];
+
+const principles = [
+  {
+    title: '免费',
+    desc: '所有模板、术语、工具说明都不收费。我希望刚入行的研究员不会因为预算问题打退堂鼓。',
+  },
+  {
+    title: '可复用',
+    desc: '所有模板都是从我的真实项目里磨出来的，不是 ChatGPT 速成。直接复制改一改就能上手。',
+  },
+  {
+    title: '会更新',
+    desc: '工具会过时、合规会改、案例会过时——我会在这里持续更新，比纸质书的版本节奏快。',
+  },
+];
+---
+
+<BaseLayout title="《用户研究：从入门到精通》读者服务网站" current="home">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container-wide hero-inner">
+      <div class="hero-text">
+        <p class="eyebrow">2026 · 蒋昌盛</p>
+        <h1 class="hero-title">用户研究：从入门到精通</h1>
+        <p class="lead hero-lead">
+          这是这本书的官方读者服务站。提供 8 份研究模板、80+ 术语词典、工具地图、合规清单与真实案例。
+          所有内容免费，会持续更新。
+        </p>
+        <div class="hero-actions">
+          <a href={`${base}/templates/`} class="btn btn-primary">下载研究模板</a>
+          <a href={`${base}/glossary/`} class="btn btn-secondary">查阅术语词典</a>
+        </div>
+        <p class="hero-meta">
+          <span class="tag">v1.98.5 · 2026</span>
+          <span class="text-faint">站点持续更新中，部分资源占位中，下一轮即将上线</span>
+        </p>
+      </div>
+
+      <aside class="hero-card">
+        <p class="eyebrow">这本书是写给谁的</p>
+        <ul class="hero-list">
+          <li>正在准备转行做用户研究的同学</li>
+          <li>入行 0–2 年、还没系统跑过项目的研究员</li>
+          <li>从乙方到甲方，或者反过来的过渡期研究员</li>
+          <li>需要在小公司一个人撑起研究职能的人</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 资源四宫格 -->
+  <section class="section">
+    <div class="container-wide">
+      <p class="eyebrow text-center">站点资源</p>
+      <h2 class="text-center">这里你能拿到什么</h2>
+      <div class="grid grid-2 mt-6">
+        {resources.map((r) => (
+          <a href={r.href} class="card resource-card">
+            <div class="resource-card-head">
+              <h3 class="mb-0">{r.title}</h3>
+              <span class="tag">{r.count}</span>
+            </div>
+            <p class="text-soft">{r.desc}</p>
+            <p class="resource-card-cta">{r.cta} →</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 三个原则 -->
+  <section class="section section-soft">
+    <div class="container">
+      <p class="eyebrow text-center">站点原则</p>
+      <h2 class="text-center">我对这个站点的三个承诺</h2>
+      <div class="grid grid-3 mt-6">
+        {principles.map((p) => (
+          <div class="principle-card">
+            <h3>{p.title}</h3>
+            <p class="text-soft">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 即将上线 -->
+  <section class="section">
+    <div class="container-narrow">
+      <p class="eyebrow text-center">即将上线</p>
+      <h2 class="text-center">还在准备中的几样</h2>
+      <ul class="upcoming-list">
+        <li>
+          <strong>真实案例集</strong>：我从书里 12 / 13 章延伸出来的精选短版，配上读者投稿入口
+        </li>
+        <li>
+          <strong>不定期刊物</strong>：行业小观察、新工具试用记、读者问答合集
+        </li>
+        <li>
+          <strong>读者圈</strong>：留邮箱预约通知，等基础内容稳定后再开
+        </li>
+      </ul>
+      <p class="text-center mt-6">
+        <a href={`${base}/circle/`} class="btn btn-secondary">留邮箱预约通知</a>
+      </p>
+    </div>
+  </section>
+
+  <style>
+    .hero {
+      padding: var(--space-10) 0 var(--space-8);
+      background: linear-gradient(180deg, var(--color-bg-soft) 0%, var(--color-bg) 100%);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: var(--space-8);
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: var(--space-6); }
+    }
+    .hero-title {
+      font-size: var(--text-4xl);
+      margin-bottom: var(--space-4);
+      letter-spacing: 0.02em;
+    }
+    @media (max-width: 800px) {
+      .hero-title { font-size: var(--text-3xl); }
+    }
+    .hero-lead {
+      max-width: 36em;
+      margin-bottom: var(--space-5);
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-bottom: var(--space-5);
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-3);
+      font-size: var(--text-sm);
+      margin: 0;
+    }
+    .hero-card {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+    }
+    .hero-list {
+      padding-left: 1.2em;
+      margin: 0;
+    }
+    .hero-list li {
+      color: var(--color-text-soft);
+      margin-bottom: var(--space-2);
+    }
+
+    .resource-card {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+    .resource-card:hover { text-decoration: none; }
+    .resource-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-3);
+    }
+    .resource-card-cta {
+      margin-top: var(--space-3);
+      margin-bottom: 0;
+      color: var(--color-accent);
+      font-weight: 500;
+    }
+
+    .principle-card {
+      padding: var(--space-4);
+    }
+    .principle-card h3 {
+      color: var(--color-accent);
+      font-size: var(--text-xl);
+      margin-bottom: var(--space-2);
+    }
+
+    .upcoming-list {
+      list-style: none;
+      padding: 0;
+      margin: var(--space-5) 0 0;
+    }
+    .upcoming-list li {
+      padding: var(--space-3) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .upcoming-list li:last-child { border-bottom: 0; }
+    .upcoming-list strong { color: var(--color-text); }
+  </style>
+</BaseLayout>

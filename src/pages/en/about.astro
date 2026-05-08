@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout
+  title="About"
+  description="About the book and its author."
+  lang="en"
+  current="about"
+>
+  <section class="section">
+    <div class="container-narrow">
+      <p class="eyebrow">About</p>
+      <h1>About this book</h1>
+
+      <h2>Who it's for</h2>
+      <ul>
+        <li>People preparing to transition into user research</li>
+        <li>Researchers in their first 0–2 years who haven't yet run a full project end-to-end</li>
+        <li>Researchers moving between agency and in-house roles</li>
+        <li>Solo researchers in small companies who have to cover the whole research function</li>
+      </ul>
+
+      <h2>What this book doesn't try to be</h2>
+      <p>
+        Not a methods encyclopaedia — there are plenty of 800-page books that cover every method in
+        passing. This book concentrates on six methods juniors should master, the full lifecycle of
+        a single research project, and the judgment behind a dozen real industry projects.
+      </p>
+      <p>
+        Not an academic textbook either — almost no formula derivations; statistical methods are
+        introduced only where they pay off in practice.
+      </p>
+
+      <h2>About the author</h2>
+      <div class="placeholder-banner">
+        Author bio is being finalised. The Chinese page has more detail.
+      </div>
+      <p>
+        Jiang Changsheng has worked in user research across consultancy, large internet firms, and
+        small in-house teams. Industries covered include smartphones, consumer electronics, gaming,
+        cross-border products, e-commerce, and AI.
+      </p>
+
+      <h2>Contact</h2>
+      <ul>
+        <li><a href={`${base}/errata/`}>Errata & feedback form</a> (currently in Chinese)</li>
+        <li><a href="https://github.com/jiangchangsheng2022" rel="noopener" target="_blank">GitHub</a></li>
+      </ul>
+
+      <p>
+        Source for this site is on
+        <a href="https://github.com/jiangchangsheng2022/jiangchangsheng2022.github.io" rel="noopener" target="_blank">GitHub</a>.
+      </p>
+    </div>
+  </section>
+
+  <style>
+    h2 { margin-top: var(--space-6); }
+  </style>
+</BaseLayout>

@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout
+  title="读者圈"
+  description="预约通知：当读者交流圈开放时通过邮件告诉你。"
+  current="circle"
+>
+  <section class="section">
+    <div class="container-narrow">
+      <p class="eyebrow">读者圈</p>
+      <h1>读者圈</h1>
+      <p class="lead">
+        我希望未来在这里建一个读者交流圈——同行可以互相问答、共享案例、约着开线下小聚。
+        但现在站点的基础内容还没稳定，先不开。
+      </p>
+
+      <div class="placeholder-banner">
+        当前预约入口为占位结构，邮件订阅服务会在下一轮接入（计划用 Buttondown 或 ConvertKit）。
+      </div>
+
+      <div class="why-card">
+        <h2>为什么要做这件事</h2>
+        <p>
+          用户研究是个孤独的工种——很多公司只有一两个人做研究，很多研究员从转行到独当一面没有同行可以问。
+          书能解决方法层面的问题，圈子才能解决"我这事卡住了找谁聊"的问题。
+        </p>
+        <p>
+          这件事我会慢慢做。先把模板、词典、工具地图做扎实，等流量起来、有足够多人愿意参与，再正式开。
+        </p>
+      </div>
+
+      <div class="reserve-card">
+        <h2>留个邮箱预约通知</h2>
+        <p class="text-soft">
+          读者圈开放时第一时间通知你。除此之外不会发任何无关邮件。
+        </p>
+
+        <form class="reserve-form" onsubmit="event.preventDefault(); document.getElementById('reserve-msg').hidden=false;">
+          <input type="email" placeholder="your@email.com" disabled />
+          <button class="btn btn-primary" disabled>预约通知（接入中）</button>
+        </form>
+
+        <p class="text-faint mt-6">
+          实际表单会用 Formspree / Buttondown 这类无服务器服务。
+          下一轮接入后这个 disabled 状态会去掉。
+        </p>
+      </div>
+
+      <div class="alt-channels">
+        <h2>暂时怎么联系到我</h2>
+        <ul>
+          <li><a href={`${base}/errata/`}>勘误反馈</a> 表单（接入后可附带留言）</li>
+          <li>书末后记里留有联系方式</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .why-card, .reserve-card, .alt-channels {
+      margin-top: var(--space-8);
+    }
+    .reserve-form {
+      display: flex;
+      gap: var(--space-2);
+      margin-top: var(--space-4);
+      flex-wrap: wrap;
+    }
+    .reserve-form input {
+      flex: 1;
+      min-width: 240px;
+      padding: 0.65em 1em;
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border-strong);
+      border-radius: var(--radius);
+      font-family: inherit;
+      font-size: var(--text-base);
+    }
+    .reserve-form input:disabled { opacity: 0.7; cursor: not-allowed; }
+    .reserve-form button:disabled { opacity: 0.7; cursor: not-allowed; }
+  </style>
+</BaseLayout>

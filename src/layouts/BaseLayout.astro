@@ -1,0 +1,83 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  lang?: 'zh' | 'en';
+  current?: string;
+  image?: string;
+}
+
+const {
+  title,
+  description = '《用户研究：从入门到精通》（蒋昌盛 著）官方读者服务网站。提供研究模板、术语词典、工具地图、合规清单和真实案例。',
+  lang = 'zh',
+  current = '',
+  image,
+} = Astro.props;
+
+const fullTitle = title.includes('用户研究') || title.includes('User Research')
+  ? title
+  : `${title} · 用户研究：从入门到精通`;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const ogImage = image ?? `${base}/og-default.png`;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://jiangchangsheng2022.github.io').toString();
+---
+
+<!doctype html>
+<html lang={lang === 'en' ? 'en' : 'zh-CN'}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph / 微信、社交分享卡片 -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'zh_CN'} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <meta name="theme-color" content="#2f5d62" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#16140f" media="(prefers-color-scheme: dark)" />
+
+    <link rel="alternate" type="application/rss+xml" title="《用户研究：从入门到精通》刊物" href={`${base}/rss.xml`} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+    <Header lang={lang} current={current} />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+
+    <style is:global>
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+      }
+      .skip-link:focus {
+        left: 8px; top: 8px;
+        background: var(--color-accent);
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 4px;
+        z-index: 100;
+      }
+    </style>
+  </body>
+</html>

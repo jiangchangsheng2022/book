@@ -1,0 +1,170 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import tools from '../data/tools.json';
+---
+
+<BaseLayout
+  title="工具地图"
+  description="按使用场景组织的用户研究工具地图：问卷、访谈转写、数据分析、可用性测试、公开数据源、行业报告。每个工具一句话评注。"
+  current="tools"
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">附录 B · 常用工具和数据源</p>
+      <h1>工具地图</h1>
+      <p class="lead">{tools.intro}</p>
+
+      <blockquote class="principle-quote">
+        <p>{tools.principle}</p>
+      </blockquote>
+
+      <nav class="toc" aria-label="工具地图目录">
+        <p class="toc-title">跳转到</p>
+        <ul>
+          {tools.categories.map((c) => (
+            <li><a href={`#${c.key}`}>{c.title}</a></li>
+          ))}
+        </ul>
+      </nav>
+
+      {tools.categories.map((c) => (
+        <section class="tool-section" id={c.key}>
+          <h2>{c.title}</h2>
+          <div class="scenario">
+            <p class="scenario-line">
+              <span class="scenario-label">场景</span>
+              {c.scenario}
+            </p>
+            <p class="scenario-line">
+              <span class="scenario-label">怎么挑</span>
+              {c.selection}
+            </p>
+          </div>
+          <ul class="tool-list">
+            {c.tools.map((t) => (
+              <li class="tool-item">
+                <div class="tool-head">
+                  <span class="tool-name">{t.name}</span>
+                  <span class="tag tool-region">{t.region}</span>
+                </div>
+                <p class="tool-note">{t.note}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+  </section>
+
+  <style>
+    .principle-quote {
+      border-left: 3px solid var(--color-accent);
+      background: var(--color-accent-soft);
+      padding: var(--space-3) var(--space-4);
+      margin: var(--space-5) 0;
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .principle-quote p {
+      margin: 0;
+      color: var(--color-text);
+      font-style: italic;
+    }
+
+    .toc {
+      background: var(--color-bg-soft);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: var(--space-4);
+      margin: var(--space-5) 0 var(--space-8);
+    }
+    .toc-title {
+      font-size: var(--text-sm);
+      color: var(--color-text-faint);
+      margin: 0 0 var(--space-2);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .toc ul {
+      list-style: none;
+      padding: 0; margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+    .toc a {
+      display: inline-block;
+      padding: 0.3em 0.8em;
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      font-size: var(--text-sm);
+    }
+    .toc a:hover { text-decoration: none; background: var(--color-accent-soft); }
+
+    .tool-section {
+      margin-bottom: var(--space-10);
+      scroll-margin-top: 80px;
+    }
+    .tool-section h2 {
+      border-bottom: 2px solid var(--color-accent);
+      padding-bottom: var(--space-2);
+      display: inline-block;
+    }
+    .scenario {
+      background: var(--color-bg-soft);
+      border-radius: var(--radius);
+      padding: var(--space-4);
+      margin-bottom: var(--space-5);
+    }
+    .scenario-line {
+      margin: 0 0 var(--space-2);
+      color: var(--color-text-soft);
+      line-height: 1.7;
+    }
+    .scenario-line:last-child { margin-bottom: 0; }
+    .scenario-label {
+      display: inline-block;
+      min-width: 4em;
+      font-weight: 600;
+      color: var(--color-accent);
+      margin-right: var(--space-2);
+    }
+
+    .tool-list {
+      list-style: none;
+      padding: 0; margin: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-3);
+    }
+    @media (max-width: 700px) {
+      .tool-list { grid-template-columns: 1fr; }
+    }
+    .tool-item {
+      padding: var(--space-3);
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      margin: 0;
+    }
+    .tool-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-2);
+      gap: var(--space-2);
+    }
+    .tool-name {
+      font-weight: 600;
+      color: var(--color-text);
+    }
+    .tool-region {
+      font-size: var(--text-xs);
+    }
+    .tool-note {
+      margin: 0;
+      font-size: var(--text-sm);
+      color: var(--color-text-soft);
+    }
+  </style>
+</BaseLayout>
